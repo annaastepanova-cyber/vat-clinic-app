@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>🔑 Вход в систему</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="login">Логин</label>
+            <input type="text" id="login" name="login" required placeholder="Латиница/цифры, ≥6 символов">
+            <div class="error-msg"></div>
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" required placeholder="Минимум 8 символов">
+            <div class="error-msg"></div>
+        </div>
+        <button type="submit" class="btn">Войти</button>
+    </form>
+    <p style="margin-top:16px;">Нет аккаунта? <a href="/register">Зарегистрироваться</a></p>
+</div>
+<script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель администратора</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>🛡️ Панель администратора</h2>
+    <a href="/dashboard">← Кабинет пользователя</a> | <a href="/logout">Выйти</a>
+    <table>
+        <tr><th>ID</th><th>Клиент</th><th>Дата</th><th>Время</th><th>Услуга</th><th>Врач</th><th>Комментарий</th></tr>
+        {% for o in orders %}
+        <tr>
+            <td>{{ o.order_id }}</td><td>{{ o.client_name }}</td><td>{{ o.order_date }}</td>
+            <td>{{ o.start_time }}:00</td><td>{{ o.service_name }}</td><td>{{ o.vet_name }}</td>
+            <td>{{ o.comment or '—' }}</td>
+        </tr>
+        {% endfor %}
+        {% if not orders %}<tr><td colspan="7" style="text-align:center;">Текущих заявок нет</td></tr>{% endif %}
+    </table>
+</div>
+<script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

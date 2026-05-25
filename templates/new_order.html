@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новая заявка</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>🐾 Запись на приём</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="service_id">Услуга</label>
+            <select id="service_id" name="service_id" required>
+                {% for s in services %}<option value="{{ s.service_id }}">{{ s.name }} ({{ s.price }} ₽)</option>{% endfor %}
+            </select><div class="error-msg"></div>
+        </div>
+        <div class="form-group">
+            <label for="veterinar_id">Врач</label>
+            <select id="veterinar_id" name="veterinar_id" required>
+                {% for v in veterinars %}<option value="{{ v.veterinar_id }}">{{ v.first_name }} {{ v.last_name }} ({{ v.specialozation }})</option>{% endfor %}
+            </select><div class="error-msg"></div>
+        </div>
+        <div class="form-group">
+            <label for="order_date">Дата</label>
+            <input type="date" id="order_date" name="order_date" required><div class="error-msg"></div>
+        </div>
+        <div class="form-group">
+            <label for="start_time">Время начала (9-18)</label>
+            <input type="number" id="start_time" name="start_time" min="9" max="18" required><div class="error-msg"></div>
+        </div>
+        <div class="form-group">
+            <label for="comment">Комментарий</label>
+            <textarea id="comment" name="comment" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn">Записаться</button>
+<div id="form-loader" style="display:none; text-align:center; margin-top:10px;">
+  ⏳ Отправка...
+</div>
+    </form>
+    <p style="margin-top:16px;"><a href="/dashboard">← Назад к списку</a></p>
+</div>
+<script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><title>Отзыв</title></head>
+<body><h2>📝 Отзыв о приёме</h2>
+<p>Заявка: {{ order.order_date }} | {{ order.service_name }} | Врач: {{ order.vet_name }}</p>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}{% for cat, m in messages %}<p style="color:{{'red' if cat=='error' else 'green'}}">{{m}}</p>{% endfor %}{% endif %}
+{% endwith %}
+<form method="POST">
+  <label>Оценка (1-10):<br><input type="number" name="rating" min="1" max="10" required></label><br><br>
+  <label>Комментарий:<br><textarea name="comment" rows="4"></textarea></label><br><br>
+  <button type="submit">Отправить отзыв</button>
+</form><p><a href="/dashboard">← Вернуться к заявкам</a></p></body></html>
